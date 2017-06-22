@@ -31,9 +31,9 @@ router.post('/compute', function(req, res, next) {
     PythonShell.run('OrbitalPhasePackage.py', options, function (err, OrbData) {
       // if (err) throw err;
       if (err) {
-        res.json({
-          errorType:"Python Error",
-          error: err
+        res.render('error', {
+          message: "Python Error",
+          error: {status: "Aww snap!  The Python script crashed!", stack:err}
         });
       };
       // results is an array consisting of messages collected during execution

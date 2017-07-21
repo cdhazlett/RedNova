@@ -18,6 +18,10 @@ router.post('/compute', function(req, res, next) {
       res.redirect('/');
     }
 
+    req.body.data = req.body.data.trim().replace(/\r\n/g, ",");
+
+    // console.log(req.body.data);
+
     var options = {
       mode: 'text',
       pythonPath: 'python',
@@ -26,7 +30,6 @@ router.post('/compute', function(req, res, next) {
       args: ["KIC 9832227" ,req.body.data]
     };
 
-    console.log(req.body.data);
 
     PythonShell.run('OrbitalPhasePackage.py', options, function (err, OrbData) {
       // if (err) throw err;

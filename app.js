@@ -1,4 +1,5 @@
 var express = require('express');
+var morgan = require('morgan');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(morgan('combined'));
 
 app.use('/', routes);
 // app.use('/compute', routes);
